@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block bar %}
+     <div class="col-md-9" style=  "justify-content: flex-end;">
+            <h1 class="page-header">出版社管理页面</h1>
+        <div class="panel panel-primary">
+                <!-- Default panel contents -->
+        <div class="panel-heading">修改出版社<i class="fa fa-thumb-tack pull-right"></i></div>
+            <div class="panel-body">
+                <div class="row" style="margin-bottom: 15px">
+                    <div class="col-md-4">
+                            <div class="input-group">
+                            </div><!-
+                        </div><!- /input-group -->
+                        </div><!-- /.col-md-4 -->
+                </div>
+                </div>
+{% endblock %}
+
+{% block main %}
+     <form action="" method="post">
+    {% csrf_token %}
+      <p>
+         <input type="hidden" name="id" value="{{ publisher_obj.id }}">
+
+    </p>
+     <p>
+        出版社名称： <input type="text"  name="name" value="{{ publisher_obj.name }}">
+    </p>
+     <p>
+        出版社地址：
+        <input type="text" name="address" value="{{ publisher_obj.address }}">
+
+     </p>
+     <p>
+        <button type="submit" class="btn">提交</button>
+    </p>
+
+</form>
+
+
+{% endblock %}

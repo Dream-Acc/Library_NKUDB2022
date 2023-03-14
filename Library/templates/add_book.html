@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block bar %}
+    <div class="col-md-9" style=  "justify-content: flex-end;">
+            <h1 class="page-header">图书管理页面</h1>
+        <div class="panel panel-primary">
+                <!-- Default panel contents -->
+        <div class="panel-heading">添加图书<i class="fa fa-thumb-tack pull-right"></i></div>
+            <div  class="panel-body">
+                 <!-
+            </div>
+      </div>
+{% endblock %}
+{% block main %}
+    <form action="" method="post">
+    {% csrf_token %}
+    <p>
+        图书名称  <input type="text"  name="name">
+    </p>
+     <p>
+       价格 <input type="text" name="price">
+   </p>
+    <p>
+       库存<input type="inventory" name="inventory">
+   </p>
+
+     <p>
+       租赁数<input type="sale_num" name="sale_num">
+   </p>
+     <p>
+        出版社
+      <select multiple name="publisher_id" id="">
+            {% for publisher_obj in publisher_obj_list %}
+                <option value="{{ publisher_obj.id }}">{{ publisher_obj.name }}</option>
+          {% endfor  %}
+      </select>
+    </p>
+    <p>
+       <button type="submit" class="btn">提交</button>
+    </p>
+
+</form>
+{% endblock %}
