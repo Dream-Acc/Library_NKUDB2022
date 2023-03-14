@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block bar %}
+     <div class="col-md-9" style=  "justify-content: flex-end;">
+            <h1 class="page-header">作者管理页面</h1>
+            <div class="panel panel-primary">
+                <!-- Default panel contents -->
+                <div class="panel-heading">作者列表 <i class="fa fa-thumb-tack pull-right"></i></div>
+                <div class="panel-body">
+                <div class="row" style="    margin-bottom: 15px">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">搜索</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-md-4 -->
+                        <div class="col-md-2 pull-right">
+                            <a class="btn btn-success" href="/app01/add_author/">新增作者</a>
+                        </div>
+                </div>
+                </div>
+    {% endblock %}
+
+{% block main %}
+     <table border="1"  class="table table-hover table-bordered">
+             <thead>
+    <tr>
+        <th>序号</th>
+        <th>作者id</th>
+        <th>作者</th>
+        <th>图书</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+      <tbody>
+    {% for res_dic in ret_list %}
+      <tr>
+
+
+        <td>{{ forloop.counter }}</td>
+         <td>{{ res_dic.author_obj.id }}</td>
+        <td>{{ res_dic.author_obj.name }}</td>
+         <td>
+        {% for book_obj in res_dic.book_list %}
+               {% if forloop.last %}
+{#                当时最后一次循环的时候显示#}
+                {{ book_obj.name }}
+                {% else %}
+                {{ book_obj.name }}
+            {% endif %}
+            {% endfor %}
+          </td>
+        <td>
+             <a href="/app01/edit_author/?id={{ res_dic.author_obj.id }}">修改</a>
+             <a href="/app01/delete_author/?id={{ res_dic.author_obj.id }}">删除</a>
+         </td>
+
+    </tr>
+    {% endfor %}
+     </tbody>
+     </table>
+{% endblock %}
